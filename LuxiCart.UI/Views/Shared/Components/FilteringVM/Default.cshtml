@@ -1,0 +1,38 @@
+﻿@model LuxiCart.UI.Models.ViewModels.FilteringVM
+@{
+    ViewData["Title"] = "Default";
+}
+
+@if (Model != null)
+{
+	<div class="flex-w flex-sb-m p-b-52">
+		<form asp-controller="Product" asp-action="Index" method="get">
+			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+				@if (Model.productParentCategories != null)
+				{
+					<select name="PCId" class="form-control-lg">
+					@foreach (var ParentCate in Model.productParentCategories)
+					{
+						<option value="@ParentCate.ProductParentCategoryId">@ParentCate.ParentCategoryName</option>
+					}
+					</select>
+				}
+				<br/>
+				@if (Model.productCategories != null)
+				{
+					<select name="SCId" class="form-control-lg">
+						@foreach (var SubCate in Model.productCategories)
+						{
+							<option value="@SubCate.ProductCategoryId">@SubCate.CategoryName</option>
+						}
+					</select>
+				}
+				<br />
+				<input type="submit" value="Filter" class="btn btn-dark" as />
+			</div>
+			
+		</form>
+		
+	</div>
+}
+

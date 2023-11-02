@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LuxiCart.EF.Models.ProductItem>
+
+@{
+    ViewData["Title"] = "ViewItems";
+}
+
+
+<div class="row w-100 mx-0">
+    <div class="col-lg-16 mx-auto">
+        <div class="auth-form-light text-left py-5 ">
+            <h1 class="font-weight-bold" style="text-align:center;">Product Items </h1>
+            <br />
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QuantityInStock)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ItemImage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Size)
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.QuantityInStock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price) $
+                            </td>
+                            <td>
+                                <div style="height: 40px; width:40px; padding:0; border: none; border-radius: 50%; background-color: @item.Color ;"></div>
+                            </td>
+                            <td>
+                                <img src="@Url.Content(item.ItemImage)" style="width: 100px; height: 100px;" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Size)
+                            </td>
+                            <td>
+                                <a asp-action="EditItem" asp-route-id="@item.ProductItemId" class="btn btn-info"> Edit Item </a>
+                                <a asp-action="Hide" asp-route-id="@item.ProductItemId" class="btn btn-light"> Hide Item </a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+                <div>
+                    <a asp-action="ProductIndex" class="btn btn-success"> Back </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

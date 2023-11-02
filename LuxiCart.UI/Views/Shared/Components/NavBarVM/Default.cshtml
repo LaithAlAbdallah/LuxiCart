@@ -1,0 +1,36 @@
+﻿@model LuxiCart.UI.Models.ViewModels.NavBarVM
+@{
+    ViewData["Title"] = "Default";
+}
+
+<ul class="main-menu">
+	@if (Model != null)
+	{
+		<li>
+			<a asp-controller="Home" asp-action="Index">Home</a>
+		</li>
+		<li>
+			<a asp-controller="Product" asp-action="Index">All Products</a>
+			<ul class="sub-menu">
+				@if (Model.productCategories != null)
+				{
+					@foreach (var SubCate in Model.productCategories)
+					{
+						<li><a asp-controller="Product" asp-action="Index" asp-route-SCId="@SubCate.ProductCategoryId">@SubCate.CategoryName</a></li>
+					}
+				}
+			</ul>
+		</li>
+
+		@if (Model.productParentCategories != null)
+		{
+			@foreach (var ParentCate in Model.productParentCategories)
+			{
+				<li>
+					<a asp-controller="Product" asp-action="Index" asp-route-PCId="@ParentCate.ProductParentCategoryId">@ParentCate.ParentCategoryName</a>
+				</li>
+			}
+		}
+	}
+</ul>
+

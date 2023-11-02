@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LuxiCart.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "ProductIndex";
+}
+
+<div class="row w-100 mx-0">
+    <div class="col-lg-16 mx-auto">
+        <div class="auth-form-light text-left py-5 ">
+            <h1 class="font-weight-bold" style="text-align:center;">Products in Store</h1>
+            <br />
+            <div class="shadow p-3 mb-5 bg-white rounded">
+
+                <p>
+                    <a asp-action="AddProduct" class="btn btn-dark">Add New Product</a>
+                </p>
+
+                @if (Model.Any())
+                {
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>@Html.DisplayNameFor(x => x.ProductName)</th>
+                            <th>@Html.DisplayNameFor(x => x.Image)</th>
+                            <th> Operations </th>
+                        </tr>
+
+                        @foreach(var product in Model)
+                        {
+                            <tr>
+                                <td>@product.ProductName</td>
+                                <td><img src="@Url.Content(product.Image)" style="width: 100px; height: 100px;" /></td>
+                                <td>
+                                    <a asp-action="ViewItems" asp-route-id="@product.ProductId" class="btn btn-primary"> View Items </a>
+                                    <a asp-action="DeleteProduct" asp-route-id="@product.ProductId" class="btn btn-dark"> Delete Product </a>
+                    
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

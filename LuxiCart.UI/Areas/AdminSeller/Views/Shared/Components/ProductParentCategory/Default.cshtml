@@ -1,0 +1,15 @@
+﻿@model IEnumerable<LuxiCart.EF.Models.ProductParentCategory>
+@{
+    ViewData["Title"] = "Default";
+    Layout = "";
+}
+
+
+@foreach (var Parent in Model)
+{
+    <option value="@Parent.ProductParentCategoryId">@Parent.ParentCategoryName</option>
+}
+
+
+
+

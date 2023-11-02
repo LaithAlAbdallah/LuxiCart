@@ -1,0 +1,9 @@
+﻿@model IEnumerable<LuxiCart.EF.Models.Country>
+
+
+
+    <option value="">-- Select Country--</option>
+    @foreach(var country in Model)
+    {
+        <option value="@country.CountryId">@country.CountryName</option>
+    } 

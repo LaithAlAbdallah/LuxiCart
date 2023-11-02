@@ -1,0 +1,58 @@
+﻿@model LuxiCart.UI.Areas.AdminSeller.Models.ViewModels.ProductItemVM
+@{
+    ViewData["Title"] = "EditItem";
+}
+
+<div class="row w-100 mx-0">
+    <div class="col-lg-8 mx-auto">
+        <div class="auth-form-light text-left py-5 ">
+            <h1 class="font-weight-bold" style="text-align:center;">Add Product Item</h1>
+            <br />
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <form asp-action="EditItem" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <h4 class="font-weight-light" style="text-align:match-parent; color:darkgoldenrod;"> Please Choose Your Item Color: </h4>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="productItem.Color" class="control-label"> Color Picker: </label>
+                        <input type="color" asp-for="productItem.Color" style="height: 40px; width:40px; padding:0; border: none; border-radius: 50% !important;" />
+                        <span asp-validation-for="productItem.Color" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="size" class="control-label"> Select Sizes:</label>
+                        @foreach (var size in (List<string>)ViewData["sizes"])
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="size" value="@size" @(Model.size.Contains(size) ? "checked" : "") />
+                                    @size
+                                </label>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="productItem.QuantityInStock" class="control-label"></label>
+                        <input asp-for="productItem.QuantityInStock" class="form-control form-control-lg" />
+                        <span asp-validation-for="productItem.QuantityInStock" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="productItem.Price" class="control-label"></label>
+                        <input asp-for="productItem.Price" class="form-control" />
+                        <span asp-validation-for="productItem.Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="productItem.ItemImage" class="control-label"></label>
+                        <img src="@Url.Content(Model.productItem.ItemImage)" style="width: 100px; height: 100px;" />
+                        <input type="file" name="file" class="form-control" />
+                        <span asp-validation-for="productItem.ItemImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Edit" class="btn btn-info" />
+                        <a asp-controller="Dashboard" asp-action="Index" class="btn btn-dark"> Home </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - LuxiCart</title>
+    <style>
+        .jumbotron {
+            background-color: #454545;
+        }
+
+            .jumbotron .hero-section {
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.6;
+                background: black;
+            }
+
+            .jumbotron .container {
+                z-index: 2;
+                position: relative;
+            }
+    </style>
+    <!-- base:css -->
+    <link rel="stylesheet" href="~/ASDashboard/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/ASDashboard/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="~/ASDashboard/css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon1.png" />
+</head>
+
+<body class="jumbotron-fluid jumbotron">
+    <div class="container-scroller">
+       <main role="main">
+           <div>
+                <video autoplay muted loop style=" position: fixed; z-index: 1; top: 0; width: 100%; height: 100%; object-fit: cover;">
+                   <source src="~/Videos/LoginBG.mp4" type="video/mp4">
+               </video>
+               <div class="container" >
+                   @RenderBody()
+               </div>
+           </div>
+       </main>
+            
+    </div>
+    <!-- container-scroller -->
+    <!-- base:js -->
+    <script src="~/ASDashboard/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/ASDashboard/js/off-canvas.js"></script>
+    <script src="~/ASDashboard/js/hoverable-collapse.js"></script>
+    <script src="~/ASDashboard/js/template.js"></script>
+    <script src="~/ASDashboard/js/settings.js"></script>
+    <script src="~/ASDashboard/js/todolist.js"></script>
+    <!-- endinject -->
+    <!--background -->
+    <script>
+        function backgroundVideo() {
+
+            $("video source").each(function () {
+                var sourceFile = $(this).attr("data-src");
+                $(this).attr("src", sourceFile);
+                var video = this.parentElement;
+                video.load();
+            });
+
+        }
+        window.onload = backgroundVideo;
+    </script>
+</body>
+
+</html>

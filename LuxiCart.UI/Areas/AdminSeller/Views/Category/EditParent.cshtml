@@ -1,0 +1,37 @@
+﻿@model LuxiCart.EF.Models.ProductParentCategory
+
+@{
+    ViewData["Title"] = "EditParent";
+}
+
+
+<div class="row w-100 mx-0">
+    <div class="col-lg-8 mx-auto">
+        <div class="auth-form-light text-left py-5 ">
+            <h1 class="font-weight-bold" style="text-align:center;">Edit Main Category</h1>
+            <br />
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <form asp-action="EditParent" method="post" enctype="multipart/form-data" >
+                    @Html.HiddenFor(x=>x.ProductParentCategoryId);
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ParentCategoryName" class="control-label">Name </label>
+                        <input asp-for="ParentCategoryName" class="form-control" />
+                        <span asp-validation-for="ParentCategoryName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ParentCategoryImage" class="control-label"> Image </label>
+                        <img src="@Url.Content(Model.ParentCategoryImage)" style="width: 100px; height: 100px;" />
+                        <input type="file" name="file" class="form-control" />
+                        <span asp-validation-for="ParentCategoryImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Edit" class="btn btn-info" />
+                        <a asp-action="CategoriesIndex" class="btn btn-dark"> Back </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

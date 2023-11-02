@@ -1,0 +1,62 @@
+﻿@model LuxiCart.UI.Models.ViewModels.HomeVM
+@{
+    ViewData["Title"] = "CategoriesIndex";
+    Layout = "~/Areas/AdminSeller/Views/Shared/_DahboardLayout.cshtml";
+}
+
+
+<div class="row w-100 mx-0">
+    <div class="col-lg-8 mx-auto">
+        <div class="auth-form-light text-left py-5 ">
+            <h1 class="font-weight-bold" style="">Parent categories</h1>
+            <br />
+            <div class="shadow p-3 mb-5 bg-white rounded">
+
+                <a asp-controller="Category" asp-action="AddParent" class="btn btn-dark">Add Parent Category</a>
+                <br />
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Operations</th>
+                    </tr>
+                    @if (Model.productParentCategories != null)
+                    {
+                        @foreach (var main in Model.productParentCategories)
+                        {
+                            <tr>
+                                <td>@main.ParentCategoryName</td>
+                                <td>
+                                    <img src="@Url.Content(main.ParentCategoryImage)" style="width: 100px; height: 100px;" />
+                                </td>
+                                <td>
+                                    <a asp-action="EditParent" asp-route-id="@main.ProductParentCategoryId" class="btn btn-info"> Edit </a>
+                                    <a asp-action="HideParent" asp-route-id="@main.ProductParentCategoryId" class="btn btn-light"> Hide </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row w-100 mx-0">
+    <div class="col-lg-8 mx-auto">
+        <div class="auth-form-light text-left py-5 ">
+            <h1 class="font-weight-bold" style="">Sub-Categories</h1>
+            <br />
+            <div class="shadow p-3 mb-5 bg-white rounded">
+
+                <a asp-controller="Category" asp-action="AddSub" class="btn btn-dark">Add  Sub-Category</a>
+                <br />
+
+                @await Component.InvokeAsync("ProductCategory")
+            </div>
+        </div>
+    </div>
+</div>

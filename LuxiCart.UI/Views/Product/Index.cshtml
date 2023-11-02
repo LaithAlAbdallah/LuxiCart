@@ -1,0 +1,66 @@
+﻿@model IEnumerable<LuxiCart.EF.Models.Product>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div style="background-color: black;">
+	<br />
+	<br />
+	<br />
+	<br />
+
+</div>
+<br />
+
+<label style="font-weight: bold; color: red;">
+	This Page is still a work in progress<br />
+	More functionality to be added
+</label>
+
+<div class="bg0 m-t-23 p-b-140">
+    <div class="container">
+		<!--Filtering-Start-->
+		@await Component.InvokeAsync("FilteringVM")
+		<!--Filtering-End-->
+
+
+        <!--Products-Start-->
+        <div class="row isotope-grid">
+        @foreach (var prod in Model)
+        {
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="@Url.Content(prod.Image)" alt="IMG-PRODUCT">
+
+							<a asp-controller="Product" asp-action="ProductItem" asp-route-ProdId="@prod.ProductId" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+								View
+							</a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a asp-controller="Product" asp-action="ProductItem" asp-route-ProdId="@prod.ProductId" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									@prod.ProductName
+								</a>
+
+								<span class="stext-105 cl3">
+									$@prod.Price
+								</span>
+							</div>
+
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+									<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+        }
+        </div>
+        <!--Products-End-->
+    </div>
+</div>
